@@ -7,7 +7,7 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../style/global.css" rel="stylesheet">
+    <link href="../../style/global.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Chart JS -->
@@ -17,8 +17,9 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="placeholder-logo.svg" alt="MyNutriPlan Logo" height="40">
+            <a class="navbar-brand" href="../index.html">
+                <!-- <img src="placeholder-logo.svg" alt="MyNutriPlan Logo" height="40"> -->
+                <h4 class="mt-3">MyNutriPlan</h4>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -38,14 +39,14 @@
                         <a class="nav-link" href="userMenu.html">Menu</a>
                     </li>
                 </ul>
-                <a class="btn btn-primary rounded-pill px-4" href="index.html">Log Out</a>
+                <a class="btn btn-primary rounded-pill px-4" href="../index.html">Log Out</a>
                 <!-- <button class="btn btn-primary rounded-pill px-4">Login</button> -->
             </div>
         </div>
     </nav>
 
     <!-- Dashboard Section -->
-    <section id="dashboard" class="py-5">
+    <section id="dashboard" class="py-10">
         <div class="container py-5">
             <h2 class="mb-4">Dashboard</h2>
             <div class="row g-4">
@@ -68,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-5 back">
                 <div class="col-md-6">
                     <h3>Food Material Preview</h3>
                     <table class="table table-bordered rounded-4">
@@ -86,42 +87,76 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-6">
-                    <canvas id="pieChart"></canvas>
+                <!-- Chart Section -->
+                <div class="col-md-3">
+                    <div class="card shadow-sm rounded-4 p-4">
+                        <h4 class="mb-4">User Nutrition Consume</h4>
+                        <canvas id="userPieChart" style="height: 300px; max-width: 300px;"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow-sm rounded-4 p-4">
+                        <h4 class="mb-4">User Nutrition Trend</h4>
+                        <canvas id="userBarChart" style="height: 300px; max-width: 300px;"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <script src="../../js/script.js"></script>
     <!-- Chart JS (contoh!!!)-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const pieCtx = document.getElementById('pieChart').getContext('2d');
-        new Chart(pieCtx, {
-            type: 'doughnut',
+        // Pie Chart for User Nutrition Consume
+        const userPieCtx = document.getElementById('userPieChart').getContext('2d');
+        new Chart(userPieCtx, {
+            type: 'pie',
             data: {
-                labels: ['Kalori', 'Protein', 'Karbohidrat', 'Lemak'],
+                labels: ['Karbohidrat', 'Protein', 'Lemak', 'Vitamin', 'Mineral'],
                 datasets: [{
-                    label: 'Persentase Asupan',
-                    data: [1800, 60, 250, 70],
+                    label: 'Persentase Konsumsi',
+                    data: [55, 20, 15, 5, 5],
                     backgroundColor: [
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(255, 99, 132, 0.6)'
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(54, 162, 235, 0.7)'
                     ]
                 }]
             },
             options: {
-                responsive: true,
+                responsive: false,
                 plugins: {
-                    title: { display: true, text: 'Distribusi Asupan Gizi' }
-                }
+                    title: { display: true, text: 'Distribusi Konsumsi Gizi Harian' },
+                    legend: { position: 'bottom' }
+                },
+                maintainAspectRatio: false
+            }
+        });
+        // Bar Chart for User Nutrition Trend
+        const userBarCtx = document.getElementById('userBarChart').getContext('2d');
+        new Chart(userBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
+                datasets: [{
+                    label: 'Kalori (kcal)',
+                    data: [1800, 1750, 1900, 1850, 2000, 1700, 1950],
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)'
+                }]
+            },
+            options: {
+                responsive: false,
+                plugins: {
+                    title: { display: true, text: 'Tren Konsumsi Kalori Mingguan' },
+                    legend: { display: false }
+                },
+                maintainAspectRatio: false
             }
         });
     </script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../../style/global.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Chart JS -->
+    
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- <img src="placeholder-logo.svg" alt="MyNutriPlan Logo" height="40"> -->
+                <h4 class="mt-3">MyNutriPlan</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="userDashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userProfile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userFoodMaterial.html">Food Material</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userMenu.html">Menu</a>
+                    </li>
+                </ul>
+                <a class="btn btn-primary rounded-pill px-4" href="../index.html">Log Out</a>
+                <!-- <button class="btn btn-primary rounded-pill px-4">Login</button> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Generate Menu Section -->
+    <section id="menu" class="py-10 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Generated Menu</h2>
+                <p class="lead">Menu based on your food material</p>
+            </div>
+            <div class="row g-4">
+                <!-- Menu Card 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Nasi Goreng Sehat</h3>
+                            <p class="small text-muted mb-2">Chef A</p>
+                            <p class="card-text">Menu olahan nasi dengan sayur dan rempah sehat, cocok untuk sarapan.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Ayam Bakar Rempah</h3>
+                            <p class="small text-muted mb-2">Chef B</p>
+                            <p class="card-text">Ayam bakar dengan bumbu rempah pilihan, lezat dan bergizi.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Sup Sayur Segar</h3>
+                            <p class="small text-muted mb-2">Chef C</p>
+                            <p class="card-text">Sup sayur dengan berbagai macam sayuran segar, cocok untuk makan siang.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Salad Buah Yogurt</h3>
+                            <p class="small text-muted mb-2">Chef D</p>
+                            <p class="card-text">Salad buah segar dengan dressing yogurt rendah lemak.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Omelet Sayur</h3>
+                            <p class="small text-muted mb-2">Chef E</p>
+                            <p class="card-text">Omelet dengan campuran sayur-sayuran, cocok untuk sarapan sehat.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Sate Tempe</h3>
+                            <p class="small text-muted mb-2">Chef F</p>
+                            <p class="card-text">Sate tempe dengan bumbu kacang, sumber protein nabati.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 7 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Pasta Sayur</h3>
+                            <p class="small text-muted mb-2">Chef G</p>
+                            <p class="card-text">Pasta dengan saus tomat dan sayuran, menu sehat ala Italia.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 8 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Sop Ikan Segar</h3>
+                            <p class="small text-muted mb-2">Chef H</p>
+                            <p class="card-text">Sop ikan dengan sayur dan rempah, kaya omega-3.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 9 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Nasi Uduk Komplit</h3>
+                            <p class="small text-muted mb-2">Chef I</p>
+                            <p class="card-text">Nasi uduk dengan lauk lengkap, cocok untuk makan siang keluarga.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu Card 10 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <img src="../../img/nasiGoreng.jfif" class="card-img-top" alt="Menu Image">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-2">Bubur Ayam Sehat</h3>
+                            <p class="small text-muted mb-2">Chef J</p>
+                            <p class="card-text">Bubur ayam dengan topping sayur dan protein, cocok untuk sarapan atau makan malam.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Lihat Resep</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../../js/script.js"></script>
+    <!-- Chart JS (contoh!!!)-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
