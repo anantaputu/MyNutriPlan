@@ -3,11 +3,20 @@
 
 @section('content')
 <div class="container py-4">
+    {{-- Alert untuk notifikasi update profil --}}
+    @if (session('status') === 'profile-updated')
+    <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        Profil berhasil diperbarui!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Selamat Datang, {{ $user->fullname }}!</h2>
         {{-- Tombol Aksi Utama --}}
         <div>
-            <a href="{{ route('member.foodMaterials.index') }}" class="btn btn-outline-primary">
+            <a href="{{ route('member.foodMaterials.index') }}" class="btn btn-outline-primary me-2">
                 <i class="bi bi-egg-fried me-1"></i> Kelola Bahan Makanan
             </a>
             <a href="{{ route('member.menus.index') }}" class="btn btn-primary">
@@ -21,30 +30,33 @@
         <div class="col-md-3">
             <div class="card shadow-sm rounded-4 text-center p-3 h-100">
                 <h5>Berat Badan</h5>
-                <p class="fs-4 fw-bold mb-0">{{ $user->weight }} kg</p>
+                <p class="fs-4 fw-bold mb-0">{{ $user->weight ?? 'Belum diisi' }} {{ $user->weight ? 'kg' : '' }}</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card shadow-sm rounded-4 text-center p-3 h-100">
                 <h5>Tinggi Badan</h5>
-                <p class="fs-4 fw-bold mb-0">{{ $user->height }} cm</p>
+                <p class="fs-4 fw-bold mb-0">{{ $user->height ?? 'Belum diisi' }} {{ $user->height ? 'cm' : '' }}</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card shadow-sm rounded-4 text-center p-3 h-100">
                 <h5>Usia</h5>
-                <p class="fs-4 fw-bold mb-0">{{ $user->age }} tahun</p>
+                <p class="fs-4 fw-bold mb-0">{{ $user->age ?? 'Belum diisi' }} {{ $user->age ? 'tahun' : '' }}</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card shadow-sm rounded-4 text-center p-3 h-100">
                 <h5>Tingkat Aktivitas</h5>
-                <p class="fs-5 fw-bold mb-0" style="margin-top: 0.5rem;">{{ Str::title(str_replace('_', ' ', $user->activity_level)) }}</p>
+                <p class="fs-5 fw-bold mb-0" style="margin-top: 0.5rem;">
+                    {{ $user->activity_level ? Str::title(str_replace('_', ' ', $user->activity_level)) : 'Belum diisi' }}
+                </p>
             </div>
         </div>
     </div>
 
     {{-- Kartu Kebutuhan Gizi Harian --}}
+    @if($user->weight && $user->height && $user->age && $user->activity_level)
     <div class="row mt-4">
         <div class="col-12">
             <div class="card shadow-sm border-0 rounded-4">
@@ -75,7 +87,7 @@
     <div class="mt-5">
         <div class="text-center mb-4">
             <h2 class="fw-bold">Rekomendasi Rencana Makan Harian Untuk Anda</h2>
-            <p class="lead text-muted">Dihasilkan oleh AI berdasarkan profil dan target kalori Anda.</p>
+            <p class="lead text-muted">Dihasilkan berdasarkan profil dan target kalori Anda.</p>
         </div>
 
         <div class="row g-4">
@@ -129,5 +141,21 @@
         </div>
         <p class="text-center text-muted small mt-4">*Ini adalah contoh rekomendasi. Sesuaikan dengan ketersediaan bahan makanan dan preferensi pribadi Anda.</p>
     </div>
+    @else
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-warning rounded-4">
+                <div class="card-body p-4 text-center">
+                    <i class="bi bi-exclamation-triangle-fill text-warning fs-1 mb-3"></i>
+                    <h4 class="card-title mb-3">Lengkapi Profil Anda</h4>
+                    <p class="text-muted mb-4">Untuk mendapatkan rekomendasi gizi yang akurat, silakan lengkapi data profil Anda terlebih dahulu.</p>
+                    <a href="{{ route('profile.edit') }}" class="btn btn-warning rounded-pill px-4">
+                        <i class="bi bi-person-gear me-2"></i>Lengkapi Profil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection
