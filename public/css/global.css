@@ -1,0 +1,159 @@
+/* Custom CSS for MyNutriPlan Landing Page */
+@font-face {
+    font-family: 'fontPrimer';
+    src: url('../fonts/GavolineDemo.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'fontSekunder';
+    src: url('../fonts/HostGrotesk-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'fontSekunder';
+    src: url('../fonts/HostGrotesk-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+:root {
+    --font-primer: 'fontPrimer', Arial, sans-serif;
+    --font-sekunder: 'fontSekunder', Georgia, serif;
+}
+
+/* General Styles */
+body {
+    font-family: var(--font-sekunder);
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primer);
+}
+
+section {
+    padding-top: 80px;
+}
+
+/* Navbar Styles */
+.navbar {
+    transition: all 0.3s ease;
+}
+
+.navbar-brand img {
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0px;
+    background-color: #347c36;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-out;
+}
+
+.nav-link:hover:after {
+    width: 100%;
+}
+
+/* Button Styles */
+.btn {
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #347c36;
+    border-color: #347c36;
+}
+
+.btn-primary:hover {
+    background-color: #3e8e41;
+    border-color: #3e8e41;
+}
+
+a .btn-primary:hover {
+    color: white;
+    background-color: #347c36;
+    border-color: #3e8e41;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Card Styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Image Styles */
+.img-fluid {
+    transition: transform 0.5s ease;
+}
+
+.card:hover .img-fluid {
+    transform: scale(1.05);
+}
+
+/* Form Styles */
+.form-control {
+    padding: 0.75rem 1.25rem;
+}
+
+.form-control:focus {
+    border-color: #347c36;
+    box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25);
+}
+
+/* Footer Styles */
+footer a {
+    transition: opacity 0.3s ease;
+}
+
+footer a:hover {
+    opacity: 0.8;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        margin: 1rem 0;
+    }
+    
+    .navbar .btn {
+        margin-top: 0.5rem;
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Animation for scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
