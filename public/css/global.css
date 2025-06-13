@@ -1,37 +1,46 @@
 /* Custom CSS for MyNutriPlan Landing Page */
+/* Custom CSS for MyNutriPlan Landing Page */
 @font-face {
-    font-family: 'fontPrimer';
-    src: url('../fonts/GavolineDemo.otf') format('opentype');
+    font-family: "fontPrimer";
+    src: url("../fonts/GavolineDemo.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'fontSekunder';
-    src: url('../fonts/HostGrotesk-Regular.ttf') format('truetype');
+    font-family: "fontSekunder";
+    src: url("../fonts/HostGrotesk-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'fontSekunder';
-    src: url('../fonts/HostGrotesk-Italic.ttf') format('truetype');
+    font-family: "fontSekunder";
+    src: url("../fonts/HostGrotesk-Italic.ttf") format("truetype");
     font-weight: normal;
     font-style: italic;
 }
 
 :root {
-    --font-primer: 'fontPrimer', Arial, sans-serif;
-    --font-sekunder: 'fontSekunder', Georgia, serif;
+    --font-primer: "fontPrimer", Arial, sans-serif;
+    --font-sekunder: "fontSekunder", Georgia, serif;
 }
 
 /* General Styles */
 body {
-    font-family: var(--font-sekunder);
+    font-family: var(--font-sekunder) !important; /* Tambahkan !important */
     color: #333;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-primer);
+h1,
+h2,
+h4 {
+    font-family: var(--font-primer) !important; /* Tambahkan !important */
 }
+h6,
+p {
+    font-family: var(--font-sekunder) !important; /* Tambahkan !important */
+}
+
+/* ... CSS lainnya ... */
 
 section {
     padding-top: 80px;
@@ -50,21 +59,49 @@ section {
     font-weight: 500;
     margin: 0 10px;
     position: relative;
+    font-family: var(--font-sekunder);
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
+/* Garis yang TIDAK terlihat secara default */
 .nav-link:after {
-    content: '';
+    content: "";
     position: absolute;
-    width: 0;
-    height: 0px;
+    height: 2px; /* Tinggi garis */
     background-color: #347c36;
-    bottom: 0;
+    bottom: -5px; /* Sesuaikan posisi garis di bawah teks */
     left: 0;
-    transition: width 0.3s ease-out;
+    right: 0; /* Penting: agar garis merata di seluruh lebar parent */
+    transform: scaleX(
+        0
+    ); /* <-- PERBAIKAN UTAMA: Skala horizontal 0 (tidak terlihat) */
+    transform-origin: left; /* Garis akan memanjang dari kiri ke kanan */
+    transition: transform 0.3s ease-out; /* Animasi untuk transform */
 }
 
+/* Garis akan muncul dan memenuhi lebar 100% HANYA saat di-hover */
 .nav-link:hover:after {
-    width: 100%;
+    transform: scaleX(
+        1
+    ); /* <-- PERBAIKAN: Skala horizontal 1 (terlihat penuh) */
+}
+
+/* Warna teks nav-link saat di-hover */
+.nav-link:hover {
+    color: #347c36;
+}
+
+/* Untuk nav-link yang aktif (punya class 'active') */
+.nav-link.active {
+    color: #347c36;
+    font-weight: 600;
+}
+
+/* Pastikan garis tidak muncul untuk nav-link.active */
+.nav-link.active:after {
+    transform: scaleX(0); /* Pastikan lebar garis 0 untuk nav-link aktif */
 }
 
 /* Button Styles */
@@ -138,7 +175,7 @@ footer a:hover {
     .navbar-nav {
         margin: 1rem 0;
     }
-    
+
     .navbar .btn {
         margin-top: 0.5rem;
         display: block;

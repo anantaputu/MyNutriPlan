@@ -91,7 +91,7 @@
                     <h4 class="card-title mb-4">Jelajahi Artikel Gizi</h4>
                     <div id="articles-carousel-container" style="position: relative; height: 250px; overflow: hidden; margin-bottom: 1rem;">
                         @forelse($articles as $article)
-                            <a href="{{ route('articles.show', $article->slug) }}" class="articles-carousel-item text-decoration-none text-dark" style="position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: opacity 0.8s ease-in-out;">
+                            <a href="{{ route('articles.show', $article->slug) }}" class="articles-carousel-item text-decoration-none text-dark" style="position: absolute; top: 4px; left: 0; width: 100%; opacity: 0; transition: opacity 0.8s ease-in-out;">
                                 <div class="card border-0 rounded-4 shadow-sm h-100">
                                     @if($article->photo)
                                         <img src="{{ asset('storage/' . $article->photo) }}" class="card-img-top rounded-top-4" alt="{{ $article->title }}" style="height: 120px; width: 100%; object-fit: cover;">
@@ -100,7 +100,7 @@
                                     @endif
                                     <div class="card-body p-3">
                                         <h6 class="card-title fw-bold mb-1">{{ $article->title }}</h6>
-                                        <p class="card-text small text-muted mb-0" style="height: 40px; overflow: hidden;">{{ Str::limit(strip_tags($article->content), 50) }}</p>
+                                        <p class="card-text small text-muted mb-0" style="height: 40px; overflow: hidden;">{{ Str::limit(strip_tags($article->content), 50) }}</p>  
                                     </div>
                                 </div>
                             </a>
