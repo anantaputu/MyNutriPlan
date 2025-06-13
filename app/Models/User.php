@@ -60,4 +60,9 @@ class User extends Authenticatable
                     ->withPivot('quantity', 'unit') // Mengambil data kuantitas dan satuan
                     ->withTimestamps();
     }
+
+    public function userFoodMaterials()
+    {
+        return $this->hasMany(UserFoodMaterial::class);
+    }
 }
