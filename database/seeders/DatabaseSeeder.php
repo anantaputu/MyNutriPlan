@@ -19,5 +19,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // You can call other seeders here if needed
+        // $this->call(OtherSeeder::class);
+        // Or you can use the command line to run specific seeders
+        // php artisan db:seed --class=OtherSeeder
+        // For example, to seed roles and permissions, you might call:
+        // $this->call(RoleSeeder::class);
+        // If you have a seeder for roles and permissions, you can uncomment the line below
+        // $this->call(RolePermissionSeeder::class);
     }
 }
