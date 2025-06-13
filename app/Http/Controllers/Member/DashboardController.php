@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http; // <-- 1. Import Http Facade
-use Illuminate\Support\Facades\Log;  // <-- Opsional: Untuk mencatat error
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use App\Models\Article; // <-- Tambahkan ini untuk mengimpor model Article
 
 class DashboardController extends Controller
 {
@@ -34,25 +35,31 @@ class DashboardController extends Controller
 
         // Faktor Aktivitas untuk TDEE
         $activityFactors = [
-            'Sedentary' => 1.2,
-            'Lightly active' => 1.375,
-            'Moderately active' => 1.55,
-            'Very active' => 1.725,
-            'Extra active' => 1.9,
+            'sedentary' => 1.2, // Pastikan konsisten dengan nilai di form (huruf kecil, tanpa spasi)
+            'lightly_active' => 1.375,
+            'moderately_active' => 1.55,
+            'very_active' => 1.725,
+            'extremely_active' => 1.9,
         ];
 
-        $activityFactor = $activityFactors[$user->activity_level] ?? 1.2;
+        // Normalisasi activity_level dari user agar sesuai dengan key activityFactors
+        $userActivityLevel = strtolower(str_replace(' ', '_', $user->activity_level));
+        $activityFactor = $activityFactors[$userActivityLevel] ?? 1.2;
         $tdee = $bmr * $activityFactor;
 
-        // 3. [BARU] Panggil Gemini API untuk mendapatkan rekomendasi makan
+        // 3. Panggil Gemini API untuk mendapatkan rekomendasi makan
         $recommendations = $this->getMealRecommendations($user, round($tdee));
 
-        // 4. Kirim semua data yang diperlukan ke view
+        // 4. Ambil beberapa artikel terbaru untuk ditampilkan di dashboard
+        $articles = Article::latest()->limit(5)->get(); // Mengambil 5 artikel terbaru
+
+        // 5. Kirim semua data yang diperlukan ke view
         return view('member.dashboard', [
             'user' => $user,
             'bmr' => round($bmr),
             'tdee' => round($tdee),
-            'recommendations' => $recommendations, // <-- Kirim data rekomendasi
+            'recommendations' => $recommendations,
+            'articles' => $articles, // <-- Kirim data artikel ke view
         ]);
     }
 
