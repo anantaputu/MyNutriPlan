@@ -1,5 +1,3 @@
-/* Custom CSS for MyNutriPlan Landing Page */
-/* Custom CSS for MyNutriPlan Landing Page */
 @font-face {
     font-family: "fontPrimer";
     src: url("../fonts/GavolineDemo.otf") format("opentype");
@@ -24,29 +22,25 @@
     --font-sekunder: "fontSekunder", Georgia, serif;
 }
 
-/* General Styles */
 body {
-    font-family: var(--font-sekunder) !important; /* Tambahkan !important */
+    font-family: var(--font-sekunder) !important;
     color: #333;
 }
 
 h1,
 h2,
 h4 {
-    font-family: var(--font-primer) !important; /* Tambahkan !important */
+    font-family: var(--font-primer) !important;
 }
 h6,
 p {
-    font-family: var(--font-sekunder) !important; /* Tambahkan !important */
+    font-family: var(--font-sekunder) !important;
 }
-
-/* ... CSS lainnya ... */
 
 section {
     padding-top: 80px;
 }
 
-/* Navbar Styles */
 .navbar {
     transition: all 0.3s ease;
 }
@@ -65,43 +59,33 @@ section {
     transition: color 0.3s ease;
 }
 
-/* Garis yang TIDAK terlihat secara default */
 .nav-link:after {
     content: "";
     position: absolute;
-    height: 2px; /* Tinggi garis */
+    height: 2px;
     background-color: #347c36;
-    bottom: -5px; /* Sesuaikan posisi garis di bawah teks */
+    bottom: -5px;
     left: 0;
-    right: 0; /* Penting: agar garis merata di seluruh lebar parent */
-    transform: scaleX(
-        0
-    ); /* <-- PERBAIKAN UTAMA: Skala horizontal 0 (tidak terlihat) */
-    transform-origin: left; /* Garis akan memanjang dari kiri ke kanan */
-    transition: transform 0.3s ease-out; /* Animasi untuk transform */
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-out;
 }
-
-/* Garis akan muncul dan memenuhi lebar 100% HANYA saat di-hover */
 .nav-link:hover:after {
-    transform: scaleX(
-        1
-    ); /* <-- PERBAIKAN: Skala horizontal 1 (terlihat penuh) */
+    transform: scaleX(1);
 }
 
-/* Warna teks nav-link saat di-hover */
 .nav-link:hover {
     color: #347c36;
 }
 
-/* Untuk nav-link yang aktif (punya class 'active') */
 .nav-link.active {
     color: #347c36;
     font-weight: 600;
 }
 
-/* Pastikan garis tidak muncul untuk nav-link.active */
 .nav-link.active:after {
-    transform: scaleX(0); /* Pastikan lebar garis 0 untuk nav-link aktif */
+    transform: scaleX(0);
 }
 
 /* Button Styles */
