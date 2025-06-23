@@ -13,7 +13,8 @@
     <button type="button" class="btn btn-danger rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#confirm-user-deletion">
         {{ __('Delete Account') }}
     </button>
-
+    
+    @push('scripts')
     {{-- Modal untuk Konfirmasi Penghapusan --}}
     <div class="modal fade" id="confirm-user-deletion" tabindex="-1" aria-labelledby="confirmUserDeletionLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -38,10 +39,11 @@
                                 id="password_delete"
                                 name="password"
                                 type="password"
-                                class="form-control"
+                                class="form-control @error('password', 'userDeletion') is-invalid @enderror" {{-- Menambahkan kelas is-invalid jika ada error --}}
                                 placeholder="{{ __('Password') }}"
                             />
-                             @error('password', 'userDeletion')
+                            {{-- Menampilkan pesan error validasi --}}
+                            @error('password', 'userDeletion')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
@@ -56,3 +58,32 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Cek apakah ada error validasi khusus dari 'userDeletion' error bag
+        // dan jika modal belum terbuka, maka buka modal
+        @if ($errors->userDeletion->isNotEmpty())
+            var confirmUserDeletionModal = new bootstrap.Modal(document.getElementById('confirm-user-deletion'));
+            confirmUserDeletionModal.show();
+        @endif
+
+        // Opsional: Bersihkan input password saat modal ditutup
+        var modalElement = document.getElementById('confirm-user-deletion');
+        if (modalElement) {
+            modalElement.addEventListener('hidden.bs.modal', function () {
+                var passwordInput = document.getElementById('password_delete');
+                if (passwordInput) {
+                    passwordInput.value = ''; // Bersihkan input password
+                    // Juga hapus kelas validasi dan pesan error
+                    passwordInput.classList.remove('is-invalid');
+                    var errorDiv = passwordInput.nextElementSibling;
+                    if (errorDiv && errorDiv.classList.contains('text-danger')) {
+                        errorDiv.textContent = ''; // Kosongkan pesan error
+                    }
+                }
+            });
+        }
+    });
+</script>
+@endpush

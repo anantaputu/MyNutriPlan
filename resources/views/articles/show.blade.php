@@ -36,11 +36,27 @@
 
             <article>
                 <!-- Tombol Kembali ke Daftar Artikel -->
-                <div class="mb-4">
-                    <a href="{{ route('articles.index') }}" class="btn btn-outline-secondary rounded-pill">
-                        <i class="bi bi-arrow-left me-2"></i>Kembali ke Semua Artikel
-                    </a>
-                </div>
+                @auth
+                    @if(auth()->user()->is_member)
+                        <div class="mb-4">
+                            <a href="{{ route('articles.index') }}" class="btn btn-outline-secondary rounded-pill">
+                                <i class="bi bi-arrow-left me-2"></i>Kembali ke Semua Artikel
+                            </a>
+                        </div>
+                    @else
+                        <div class="mb-4">
+                            <a href="{{ route('welcome') }}" class="btn btn-outline-secondary rounded-pill">
+                                <i class="bi bi-arrow-left me-2"></i>Kembali ke Halaman Utama
+                            </a>
+                        </div>
+                    @endif
+                @else
+                    <div class="mb-4">
+                        <a href="{{ route('welcome') }}" class="btn btn-outline-secondary rounded-pill">
+                            <i class="bi bi-arrow-left me-2"></i>Kembali ke Halaman Utama
+                        </a>
+                    </div>
+                @endauth
 
                 <!-- Gambar Utama Artikel -->
                 @if ($article->photo)

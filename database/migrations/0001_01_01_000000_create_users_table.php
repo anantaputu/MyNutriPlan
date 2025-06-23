@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('age');
             $table->string('gender'); // 'male' atau 'female'
             $table->string('activity_level');
-
             $table->rememberToken();
             $table->timestamps();
         });

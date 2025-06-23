@@ -38,8 +38,8 @@
                     </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                <a href="{{ route('member.foodMaterials.index') }}" class="btn btn-secondary">Batal</a>
+                <button type="submit" class="btn btn-primary rounded-pill">Simpan Perubahan</button>
+                <a href="{{ route('member.foodMaterials.index') }}" class="btn btn-secondary rounded-pill">Batal</a>
             </form>
         </div>
     </div>

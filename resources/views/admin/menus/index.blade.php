@@ -17,6 +17,8 @@
                         <th>ID</th>
                         <th>Menu Title</th>
                         <th>Description</th>
+                        <th>kalori</th>
+                        <th>Tipe</th>
                         <th>Photo</th>
                         <th>Actions</th>
                     </tr>
@@ -29,6 +31,9 @@
                         <td>{{ $menu->title }}</td>
                         {{-- Menggunakan Str::limit untuk membatasi panjang deskripsi --}}
                         <td>{{ Str::limit($menu->description, 50) }}</td>
+                        <td>{{ $menu->calories }}</td>
+                        <td>{{ $menu->meal_type }}</td>
+                        {{-- Menampilkan foto menu jika ada, jika tidak ada tampilkan teks "No Photo" --}}
                         <td class="text-center">
                             @if($menu->photo)
                                 {{-- Menampilkan foto dari storage --}}

@@ -1,43 +1,42 @@
-/* Custom CSS for MyNutriPlan Landing Page */
 @font-face {
-    font-family: 'fontPrimer';
-    src: url('../fonts/GavolineDemo.otf') format('opentype');
+    font-family: "fontPrimer";
+    src: url("../fonts/GavolineDemo.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'fontSekunder';
-    src: url('../fonts/HostGrotesk-Regular.ttf') format('truetype');
+    font-family: "fontSekunder";
+    src: url("../fonts/HostGrotesk-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
-    font-family: 'fontSekunder';
-    src: url('../fonts/HostGrotesk-Italic.ttf') format('truetype');
+    font-family: "fontSekunder";
+    src: url("../fonts/HostGrotesk-Italic.ttf") format("truetype");
     font-weight: normal;
     font-style: italic;
 }
 
 :root {
-    --font-primer: 'fontPrimer', Arial, sans-serif;
-    --font-sekunder: 'fontSekunder', Georgia, serif;
+    --font-primer: "fontPrimer", Arial, sans-serif;
+    --font-sekunder: "fontSekunder", Georgia, serif;
 }
 
-/* General Styles */
 body {
-    font-family: var(--font-sekunder);
+    font-family: var(--font-sekunder) !important;
     color: #333;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-primer);
+h1,
+h2,
+h4 {
+    font-family: var(--font-primer) !important;
+}
+h6,
+p {
+    font-family: var(--font-sekunder) !important;
 }
 
-section {
-    padding-top: 80px;
-}
-
-/* Navbar Styles */
 .navbar {
     transition: all 0.3s ease;
 }
@@ -50,21 +49,39 @@ section {
     font-weight: 500;
     margin: 0 10px;
     position: relative;
+    font-family: var(--font-sekunder);
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .nav-link:after {
-    content: '';
+    content: "";
     position: absolute;
-    width: 0;
-    height: 0px;
+    height: 2px;
     background-color: #347c36;
-    bottom: 0;
+    bottom: -5px;
     left: 0;
-    transition: width 0.3s ease-out;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-out;
+}
+.nav-link:hover:after {
+    transform: scaleX(1);
 }
 
-.nav-link:hover:after {
-    width: 100%;
+.nav-link:hover {
+    color: #347c36;
+}
+
+.nav-link.active {
+    color: #347c36;
+    font-weight: 600;
+}
+
+.nav-link.active:after {
+    transform: scaleX(0);
 }
 
 /* Button Styles */
@@ -138,7 +155,7 @@ footer a:hover {
     .navbar-nav {
         margin: 1rem 0;
     }
-    
+
     .navbar .btn {
         margin-top: 0.5rem;
         display: block;

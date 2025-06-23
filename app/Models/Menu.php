@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\FoodMaterial;
 
 class Menu extends Model
 {
@@ -16,9 +17,12 @@ class Menu extends Model
      */
     protected $fillable = [
         'title',
-        'slug',
         'description',
+        'recipe',
         'photo',
+        'calories',
+        'meal_type',
+        'slug',
     ];
 
     public function foodMaterials()

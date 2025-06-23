@@ -4,45 +4,79 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
-use Illuminate\Support\Facades\Auth;
+use App\Models\FoodMaterial; // Pastikan ini di-import jika digunakan di controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Import Auth
+use Illuminate\Database\Eloquent\Builder; // Import Builder
+use Parsedown;
 
 class MenuController extends Controller
 {
-    /**
-     * Menampilkan daftar menu yang bisa dibuat berdasarkan bahan makanan pengguna.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function index()
-    {
-        // 1. Dapatkan pengguna yang sedang login
+    public function index() {
         $user = Auth::user();
 
-        // 2. Ambil ID dari semua bahan makanan yang dimiliki pengguna
-        //    (Asumsi: Anda memiliki relasi 'userFoodMaterials' pada model User)
-        $userFoodMaterialIds = $user->userFoodMaterials()->pluck('food_material_id')->toArray();
+        // Mengubah .get() menjadi .paginate()
+        // Jumlah item per halaman (misal: 9 menu per halaman)
+        $menus = Menu::latest()->with('foodMaterials')->paginate(9); // Eager load foodMaterials
 
-        // 3. Filter menu:
-        //    Gunakan relasi 'foodMaterials' sesuai dengan definisi di Menu Model.
-        //    Logikanya adalah mengambil semua menu yang TIDAK memiliki bahan ('foodMaterials')
-        //    yang TIDAK ADA ('whereNotIn') dalam daftar bahan yang dimiliki pengguna.
-        $menus = Menu::whereDoesntHave('foodMaterials', function ($query) use ($userFoodMaterialIds) {
-            $query->whereNotIn('food_material_id', $userFoodMaterialIds);
-        })->paginate(9);
+        // Logika pengecekan ketersediaan bahan tetap sama,
+        // namun sekarang diterapkan pada koleksi yang sudah dipaginasi
+        if ($user) {
+            $userInventory = $user->myFoodMaterials->keyBy('id')->map(function ($material) {
+                return $material->pivot->quantity;
+            });
+            $userMaterialIds = $userInventory->keys()->toArray();
 
-        // 4. Tampilkan halaman view dan kirim data menu yang sudah difilter
+            foreach ($menus as $menu) { // Loop ini sekarang akan bekerja pada item-item di halaman saat ini
+                $requiredMaterialsCount = $menu->foodMaterials->count();
+                $missingMaterials = [];
+                $canBeMadeFully = true;
+
+                if ($requiredMaterialsCount === 0) {
+                    $canBeMadeFully = false;
+                    $menu->status_ketersediaan = 'unknown'; // Atau 'tidak_ada_resep'
+                    $menu->missing_materials = [];
+                    continue;
+                }
+
+                foreach ($menu->foodMaterials as $requiredMaterial) {
+                    $requiredQuantity = $requiredMaterial->pivot->quantity_grams;
+                    $userHasQuantity = $userInventory->get($requiredMaterial->id, 0);
+
+                    if (!in_array($requiredMaterial->id, $userMaterialIds) || $userHasQuantity < $requiredQuantity) {
+                        $canBeMadeFully = false;
+                        $missingMaterials[] = [
+                            'id' => $requiredMaterial->id,
+                            'name' => $requiredMaterial->name,
+                            'needed' => $requiredQuantity,
+                            'have' => $userHasQuantity,
+                        ];
+                    }
+                }
+                $menu->status_ketersediaan = $canBeMadeFully ? 'bisa_dibuat' : 'bahan_kurang';
+                $menu->missing_materials = $missingMaterials;
+            }
+        } else {
+            // Jika user tidak login, semua menu diasumsikan 'tidak_diketahui' ketersediaannya
+            foreach ($menus as $menu) {
+                $menu->status_ketersediaan = 'tidak_login';
+                $menu->missing_materials = [];
+            }
+        }
+
         return view('member.menus.index', compact('menus'));
     }
 
     /**
      * Menampilkan detail dari satu menu.
-     * Menggunakan Route-Model Binding untuk secara otomatis menemukan menu berdasarkan ID.
+     * Menggunakan Route-Model Binding untuk secara otomatis menemukan menu berdasarkan slug.
      */
     public function show(Menu $menu)
     {
-        // Tampilkan view untuk detail menu
+        $parsedown = new Parsedown();
+        $menu->recipe_html = $parsedown->text($menu->recipe); // Buat properti baru untuk HTML yang sudah di-parse
+        $menu->description_html = $parsedown->text($menu->description);
+
         return view('member.menus.show', compact('menu'));
     }
-
-    // ... method lainnya tetap sama untuk saat ini ...
 }

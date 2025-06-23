@@ -33,6 +33,33 @@
                     {{-- Textarea diisi dengan data yang ada --}}
                     <textarea class="form-control" id="description" name="description" rows="5" required>{{ old('description', $menu->description) }}</textarea>
                 </div>
+
+                {{-- >>> TAMBAHAN UNTUK KOLOM 'recipe' <<< --}}
+                <div class="mb-3">
+                    <label for="recipe" class="form-label">Resep</label>
+                    {{-- Textarea untuk resep, diisi dengan data yang ada atau old input --}}
+                    <textarea class="form-control" id="recipe" name="recipe" rows="10">{{ old('recipe', $menu->recipe) }}</textarea>
+                    @error('recipe')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- >>> AKHIR TAMBAHAN <<< --}}
+
+                <div class="mb-3">
+                    <label for="calories" class="form-label">Kalori</label>
+                    {{-- Input diisi dengan data yang ada --}}
+                    <input type="number" class="form-control" id="calories" name="calories" value="{{ old('calories', $menu->calories) }}" step="any" required>
+                </div>
+                <div class="mb-3">
+                    <label for="meal_type" class="form-label">Tipe Makanan</label>
+                    <select class="form-select" id="meal_type" name="meal_type" required>
+                        <option value="">Pilih Tipe Makanan</option>
+                        <option value="breakfast" {{ old('meal_type', $menu->meal_type) == 'breakfast' ? 'selected' : '' }}>Sarapan</option>
+                        <option value="lunch" {{ old('meal_type', $menu->meal_type) == 'lunch' ? 'selected' : '' }}>Makan Siang</option>
+                        <option value="dinner" {{ old('meal_type', $menu->meal_type) == 'dinner' ? 'selected' : '' }}>Makan Malam</option>
+                        <option value="snack" {{ old('meal_type', $menu->meal_type) == 'snack' ? 'selected' : '' }}>Camilan</option>
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label for="photo" class="form-label">Photo</label>
                     <input class="form-control" type="file" id="photo" name="photo">
@@ -48,6 +75,8 @@
                 <h4 class="mt-4">Bahan Makanan</h4>
                 <div id="ingredients-container">
                     {{-- Loop untuk menampilkan bahan makanan yang sudah ada --}}
+                    {{-- Pastikan relasi 'foodMaterials' sudah ada di model Menu,
+                         dan juga relasi pivot-nya 'quantity_grams' --}}
                     @foreach($menu->foodMaterials as $existingMaterial)
                     <div class="row ingredient-row mb-3 align-items-center">
                         <div class="col-md-6">
@@ -78,7 +107,6 @@
 
         <div class="mt-4 mb-3">
             {{-- Tombol submit diubah menjadi 'Update Menu' --}}
-            {{-- Tombol submit diubah menjadi 'Update' --}}
             <button type="submit" class="btn btn-primary">Update Menu</button>
             <a href="{{ route('admin.menus.index') }}" class="btn btn-secondary">Batal</a>
         </div>
@@ -114,7 +142,12 @@
         const template = document.getElementById('ingredient-template').innerHTML;
 
         addIngredientBtn.addEventListener('click', function() {
-            ingredientsContainer.insertAdjacentHTML('beforeend', template);
+            // Clone template, bersihkan nilai jika ada dari 'old'
+            const newRow = document.createElement('div');
+            newRow.innerHTML = template.trim();
+            newRow.querySelector('select').value = ''; // Reset select
+            newRow.querySelector('input[type="number"]').value = ''; // Reset quantity
+            ingredientsContainer.appendChild(newRow.firstElementChild); // Append the actual row
         });
 
         ingredientsContainer.addEventListener('click', function(e) {

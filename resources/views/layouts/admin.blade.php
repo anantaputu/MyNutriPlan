@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/admin/dashboard') }}">
+            <a class="navbar-brand" href="{{ route('admin.dashboard') }}"> {{-- Menggunakan route() --}}
                 <img src="/images/logo.png" alt="Logo MyNutriPlan" class="img-fluid" style="height: 50px; width: 50px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -22,19 +22,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}" href="{{ url('/admin/dashboard') }}">Dashboard</a>
+                        <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a> {{-- Menggunakan route() --}}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}" href="{{ url('/admin/users') }}">User Management</a>
+                        <a class="nav-link {{ request()->routeIs('admin.users*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">User Management</a> {{-- Menggunakan route() --}}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('admin/food-materials*') ? 'active' : '' }}" href="{{ url('/admin/food-materials') }}">Food Material Management</a>
+                        <a class="nav-link {{ request()->routeIs('admin.food-materials*') ? 'active' : '' }}" href="{{ route('admin.food-materials.index') }}">Food Material Management</a> {{-- Menggunakan route() --}}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('admin/menus*') ? 'active' : '' }}" href="{{ url('/admin/menus') }}">Menu Management</a>
+                        <a class="nav-link {{ request()->routeIs('admin.menus*') ? 'active' : '' }}" href="{{ route('admin.menus.index') }}">Menu Management</a> {{-- Menggunakan route() --}}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('admin/articles*') ? 'active' : '' }}" href="{{ url('/admin/articles') }}">Article Management</a>
+                        <a class="nav-link {{ request()->routeIs('admin.articles*') ? 'active' : '' }}" href="{{ route('admin.articles.index') }}">Article Management</a> {{-- Menggunakan route() --}}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('admin.contact*') ? 'active' : '' }}" href="{{ route('admin.contact.index') }}">Contact Management</a>
                     </li>
                 </ul>
                 <div class="btn btn-danger rounded-pill">
