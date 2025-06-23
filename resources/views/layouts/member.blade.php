@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'MyNutriPlan')</title>
+    @stack('styles')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    @stack('styles')
+    <link rel="stylesheet" href="/css/global.css">
 </head>
 <body>
+    @auth
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ route('member.dashboard') }}">
@@ -34,18 +36,18 @@
                 {{-- Dropdown Pengguna --}}
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->fullname }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); this.closest('form').submit();">
-                                        Log Out
-                                    </a>
-                                </form>
+                                {{-- LINK LOGOUT SEKARANG MEMICU MODAL --}}
+                                <a class="dropdown-item" href="#"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#logoutConfirmationModal"> {{-- ID modal yang akan dipicu --}}
+                                    Log Out
+                                </a>
+                                {{-- Form POST logout asli di sini sudah dihapus, karena form akan ada di dalam modal --}}
                             </li>
                         </ul>
                     </li>
@@ -53,6 +55,7 @@
             </div>
         </div>
     </nav>
+    @endauth
 
     <main>
         <div class="container" style="padding-top: 6rem;">
@@ -71,9 +74,31 @@
         </div>
         {{-- Konten utama dipindahkan sedikit ke bawah agar tidak tertutup pesan alert --}}
         <div class="container">
-             @yield('content')
+            @yield('content')
         </div>
     </main>
+
+    <div class="modal fade" id="logoutConfirmationModal" tabindex="-1" aria-labelledby="logoutConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                {{-- Form logout ada di dalam modal dan langsung mengarah ke rute logout --}}
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logoutConfirmationModalLabel">{{ __('Confirm Logout') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ __('Are you sure you want to log out?') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+                        <button type="submit" class="btn btn-danger rounded-pill">{{ __('Log Out') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

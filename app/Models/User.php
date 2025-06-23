@@ -61,6 +61,12 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
+    public function getIsMemberAttribute(): bool
+    {
+        // Logika sederhana: jika role-nya 'member'
+        return $this->role === 'member';
+    }
+
     public function userFoodMaterials()
     {
         return $this->hasMany(UserFoodMaterial::class);

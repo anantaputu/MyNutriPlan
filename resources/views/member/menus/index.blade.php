@@ -29,6 +29,21 @@
     .nutrition-info .fw-bold {
         font-size: 1rem;
     }
+    /* Style untuk ikon status */
+    .menu-status-icon {
+        font-size: 1.25rem; /* Ukuran ikon */
+        vertical-align: middle;
+        margin-left: 8px; /* Jarak dari judul */
+    }
+    .icon-available {
+        color: green; /* Warna hijau untuk tersedia */
+    }
+    .icon-missing {
+        color: orange; /* Warna oranye untuk bahan kurang */
+    }
+    .icon-unknown {
+        color: gray; /* Warna abu-abu untuk tidak diketahui (misal belum login) */
+    }
 </style>
 @endpush
 
@@ -38,48 +53,43 @@
         <h2 class="display-5 fw-bold">Pilihan Menu Sehat</h2>
         <p class="lead text-muted">Telusuri berbagai menu lezat dan bergizi yang telah kami siapkan.</p>
     </div>
-    
+
     <div class="row g-4">
         {{-- Loop melalui setiap menu dari controller --}}
         @forelse ($menus as $menu)
-         <div class="col-lg-4 col-md-6">
-            <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
-                {{-- Gunakan foto menu atau placeholder --}}
-                <img src="{{ $menu->photo ? asset('storage/' . $menu->photo) : 'https://placehold.co/600x400/a7e6a8/333333?text=Menu+Image' }}" class="card-img-top" alt="{{ $menu->name }}">
-                
-                <div class="card-body">
-                    <h2 class="card-title fw-bold mb-2">{{ $menu->name }}</h2>
-                    <p class="card-text text-muted">
-                       {{ Str::limit($menu->description, 100) }}
-                    </p>
-                    
-                    {{-- Informasi Gizi --}}
-                    <div class="row text-center mt-auto pt-3 border-top nutrition-info">
-                        <div class="col">
-                            <span class="fw-bold">{{ number_format($menu->calories) }}</span>
-                            <span>Kalori</span>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                    <a href="{{ route('member.menus.show', $menu->slug) }}" style="color: #111; text-decoration: none;">
+                        <img src="{{ $menu->photo ? asset('storage/' . $menu->photo) : 'https://placehold.co/600x400/a7e6a8/333333?text=Menu+Image' }}" class="card-img-top" alt="{{ $menu->title }}">
+                        <div class="card-body position-relative d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2">
+                                {{ $menu->title }}
+                                {{-- Tampilkan ikon berdasarkan status_ketersediaan --}}
+                                @if (isset($menu->status_ketersediaan))
+                                    @if ($menu->status_ketersediaan == 'bisa_dibuat')
+                                        <i class="bi bi-check-circle-fill menu-status-icon icon-available" title="Bisa dibuat dengan bahan Anda"></i>
+                                    @elseif ($menu->status_ketersediaan == 'bahan_kurang')
+                                        <i class="bi bi-exclamation-triangle-fill menu-status-icon icon-missing" title="Bahan kurang tersedia"></i>
+                                    @else {{-- 'tidak_login' atau 'unknown' --}}
+                                        <i class="bi bi-question-circle-fill menu-status-icon icon-unknown" title="Hubungi Admin"></i>
+                                    @endif
+                                @endif
+                            </h5>
+                            <p class="card-text text-muted small mb-3">
+                                <i class="bi bi-fire"></i> {{ number_format($menu->calories) }} Kalori
+                            </p>
+                            <p class="card-text">
+                                {{ Str::limit(strip_tags($menu->description), 120) }}
+                            </p>
+                            <div class="mt-3">
+                                <a href="{{ route('member.menus.show', $menu->slug) }}" class="btn btn-outline-secondary rounded-pill w-100">
+                                    Lihat Resep <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col">
-                            <span class="fw-bold">{{ number_format($menu->protein) }}g</span>
-                            <span>Protein</span>
-                        </div>
-                        <div class="col">
-                            <span class="fw-bold">{{ number_format($menu->carbs) }}g</span>
-                            <span>Karbo</span>
-                        </div>
-                        <div class="col">
-                             <span class="fw-bold">{{ number_format($menu->fat) }}g</span>
-                            <span>Lemak</span>
-                        </div>
-                    </div>
-                    {{-- Tombol Aksi --}}
-                    <div class="mt-3">
-                        <a href="{{ route('member.menus.show', $menu->id) }}" class="btn btn-primary w-100">
-                            <i class="bi bi-info-circle me-1"></i> Lihat Resep
-                        </a>
+                    </a>
                 </div>
             </div>
-        </div>
         @empty
             {{-- Tampilan jika tidak ada menu sama sekali --}}
             <div class="col-12">
@@ -90,9 +100,7 @@
                 </div>
             </div>
         @endforelse
-    </div>
 
-    <!-- Komponen Paginasi -->
     @if ($menus->hasPages())
         <div class="mt-5 pt-4 d-flex justify-content-center">
             {{ $menus->links() }}

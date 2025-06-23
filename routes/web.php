@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
 use App\Http\Controllers\Member\UserFoodMaterialController;
 use App\Http\Controllers\Member\MenuController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +26,11 @@ use App\Http\Controllers\Member\MenuController;
 Route::get('/', function () {
     $latestArticles = Article::latest()->take(3)->get();
     return view('welcome', ['articles' => $latestArticles]);
-});
+})->name('welcome');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
-
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 /*
 |--------------------------------------------------------------------------

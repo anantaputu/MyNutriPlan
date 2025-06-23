@@ -30,7 +30,8 @@
         <div class="col-12">
             <div class="card shadow-sm border-0 rounded-4 bg-light">
                 <div class="card-body p-4 p-md-5">
-                     @include('profile.partials.delete-user-form')
+                    {{-- Sekarang meng-*include* partial delete-user-form --}}
+                    @include('profile.partials.delete-user-form')
                 </div>
             </div>
         </div>
