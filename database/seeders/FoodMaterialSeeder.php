@@ -1,0 +1,118 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+
+class FoodMaterialSeeder extends Seeder
+{
+    public function run()
+    {
+        $materials = [
+            ['name' => 'Apel', 'calories' => 52.00, 'protein' => 0.26, 'fat' => 0.17, 'carbohydrates' => 13.81, 'fiber' => 2.4, 'vitamins' => 'C, A, B6', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Pisang', 'calories' => 89.00, 'protein' => 1.09, 'fat' => 0.33, 'carbohydrates' => 22.84, 'fiber' => 2.6, 'vitamins' => 'C, B6', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Jeruk', 'calories' => 47.00, 'protein' => 0.94, 'fat' => 0.12, 'carbohydrates' => 11.75, 'fiber' => 2.4, 'vitamins' => 'C, A', 'minerals' => 'Kalium, Kalsium'],
+            ['name' => 'Brokoli', 'calories' => 34.00, 'protein' => 2.82, 'fat' => 0.37, 'carbohydrates' => 6.64, 'fiber' => 2.6, 'vitamins' => 'C, K, A, B9', 'minerals' => 'Kalium, Zat Besi'],
+            ['name' => 'Wortel', 'calories' => 41.00, 'protein' => 0.93, 'fat' => 0.24, 'carbohydrates' => 9.58, 'fiber' => 2.8, 'vitamins' => 'A, K, C', 'minerals' => 'Kalium'],
+            ['name' => 'Bayam', 'calories' => 23.00, 'protein' => 2.86, 'fat' => 0.39, 'carbohydrates' => 3.63, 'fiber' => 2.2, 'vitamins' => 'A, C, K, B9', 'minerals' => 'Zat Besi, Kalsium'],
+            ['name' => 'Kentang Rebus', 'calories' => 87.00, 'protein' => 1.87, 'fat' => 0.10, 'carbohydrates' => 20.13, 'fiber' => 1.8, 'vitamins' => 'C, B6', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Ubi Jalar', 'calories' => 86.00, 'protein' => 1.57, 'fat' => 0.05, 'carbohydrates' => 20.12, 'fiber' => 3.0, 'vitamins' => 'A, C, B6', 'minerals' => 'Kalium, Mangan'],
+            ['name' => 'Telur Ayam', 'calories' => 155.00, 'protein' => 12.58, 'fat' => 10.61, 'carbohydrates' => 1.12, 'fiber' => 0.0, 'vitamins' => 'A, D, B12', 'minerals' => 'Fosfor, Selenium'],
+            ['name' => 'Susu Sapi Full Cream', 'calories' => 61.00, 'protein' => 3.15, 'fat' => 3.25, 'carbohydrates' => 4.80, 'fiber' => 0.0, 'vitamins' => 'D, B2, B12', 'minerals' => 'Kalsium, Kalium'],
+            ['name' => 'Salmon', 'calories' => 208.00, 'protein' => 20.42, 'fat' => 13.42, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B12, D', 'minerals' => 'Selenium, Fosfor'],
+            ['name' => 'Tuna', 'calories' => 132.00, 'protein' => 28.00, 'fat' => 1.00, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B6, B12', 'minerals' => 'Selenium, Magnesium'],
+            ['name' => 'Ayam Fillet', 'calories' => 165.00, 'protein' => 31.0, 'fat' => 3.6, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B6, B12', 'minerals' => 'Fosfor, Selenium'],
+            ['name' => 'Daging Sapi Tanpa Lemak', 'calories' => 250.00, 'protein' => 26.1, 'fat' => 15.0, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B12, B6', 'minerals' => 'Zat Besi, Seng'],
+            ['name' => 'Tempe', 'calories' => 193.00, 'protein' => 20.3, 'fat' => 10.8, 'carbohydrates' => 7.6, 'fiber' => 1.4, 'vitamins' => 'B2, B12', 'minerals' => 'Kalsium, Zat Besi'],
+            ['name' => 'Tahu', 'calories' => 76.00, 'protein' => 8.0, 'fat' => 4.8, 'carbohydrates' => 1.9, 'fiber' => 0.3, 'vitamins' => 'B2', 'minerals' => 'Kalsium, Zat Besi'],
+            ['name' => 'Kacang Almond', 'calories' => 579.00, 'protein' => 21.15, 'fat' => 49.93, 'carbohydrates' => 21.55, 'fiber' => 12.5, 'vitamins' => 'E, B2', 'minerals' => 'Magnesium, Kalium'],
+            ['name' => 'Kacang Tanah', 'calories' => 567.00, 'protein' => 25.8, 'fat' => 49.2, 'carbohydrates' => 16.1, 'fiber' => 8.5, 'vitamins' => 'E, B3', 'minerals' => 'Magnesium, Fosfor'],
+            ['name' => 'Oatmeal', 'calories' => 68.00, 'protein' => 2.4, 'fat' => 1.4, 'carbohydrates' => 12.0, 'fiber' => 1.7, 'vitamins' => 'B1, B5', 'minerals' => 'Mangan, Fosfor'],
+            ['name' => 'Roti Gandum', 'calories' => 247.00, 'protein' => 13.0, 'fat' => 4.2, 'carbohydrates' => 41.0, 'fiber' => 6.0, 'vitamins' => 'B1, B3', 'minerals' => 'Zat Besi, Magnesium'],
+            ['name' => 'Yogurt Plain', 'calories' => 59.00, 'protein' => 10.0, 'fat' => 0.4, 'carbohydrates' => 3.6, 'fiber' => 0.0, 'vitamins' => 'B2, B12', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Keju Cheddar', 'calories' => 403.00, 'protein' => 24.9, 'fat' => 33.1, 'carbohydrates' => 1.3, 'fiber' => 0.0, 'vitamins' => 'A, B12', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Minyak Zaitun', 'calories' => 884.00, 'protein' => 0.0, 'fat' => 100.0, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'E, K', 'minerals' => 'Seng, Besi'],
+            ['name' => 'Minyak Kelapa', 'calories' => 862.00, 'protein' => 0.0, 'fat' => 100.0, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'E', 'minerals' => 'Zat Besi'],
+            ['name' => 'Jagung Manis', 'calories' => 86.00, 'protein' => 3.27, 'fat' => 1.35, 'carbohydrates' => 19.02, 'fiber' => 2.7, 'vitamins' => 'B1, B5, C', 'minerals' => 'Magnesium, Fosfor'],
+            ['name' => 'Kacang Hijau', 'calories' => 347.00, 'protein' => 23.9, 'fat' => 1.2, 'carbohydrates' => 62.6, 'fiber' => 16.3, 'vitamins' => 'B1, B2, C', 'minerals' => 'Kalium, Zat Besi'],
+            ['name' => 'Kacang Merah', 'calories' => 337.00, 'protein' => 23.5, 'fat' => 0.9, 'carbohydrates' => 60.0, 'fiber' => 25.0, 'vitamins' => 'B1, B9', 'minerals' => 'Magnesium, Zat Besi'],
+            ['name' => 'Blueberry', 'calories' => 57.00, 'protein' => 0.74, 'fat' => 0.33, 'carbohydrates' => 14.49, 'fiber' => 2.4, 'vitamins' => 'C, K', 'minerals' => 'Mangan'],
+            ['name' => 'Strawberry', 'calories' => 32.00, 'protein' => 0.67, 'fat' => 0.3, 'carbohydrates' => 7.68, 'fiber' => 2.0, 'vitamins' => 'C, K', 'minerals' => 'Mangan, Kalium'],
+            ['name' => 'Anggur Merah', 'calories' => 69.00, 'protein' => 0.72, 'fat' => 0.16, 'carbohydrates' => 18.1, 'fiber' => 0.9, 'vitamins' => 'C, K', 'minerals' => 'Mangan, Kalium'],
+            ['name' => 'Tomat', 'calories' => 18.00, 'protein' => 0.88, 'fat' => 0.2, 'carbohydrates' => 3.9, 'fiber' => 1.2, 'vitamins' => 'C, A, K', 'minerals' => 'Kalium'],
+            ['name' => 'Mentimun', 'calories' => 16.00, 'protein' => 0.65, 'fat' => 0.11, 'carbohydrates' => 3.63, 'fiber' => 0.5, 'vitamins' => 'K, C', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Bawang Merah', 'calories' => 40.00, 'protein' => 1.1, 'fat' => 0.1, 'carbohydrates' => 9.34, 'fiber' => 1.7, 'vitamins' => 'C, B6', 'minerals' => 'Kalium, Fosfor'],
+            ['name' => 'Bawang Putih', 'calories' => 149.00, 'protein' => 6.36, 'fat' => 0.5, 'carbohydrates' => 33.06, 'fiber' => 2.1, 'vitamins' => 'B6, C', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Jahe', 'calories' => 80.00, 'protein' => 1.82, 'fat' => 0.75, 'carbohydrates' => 17.77, 'fiber' => 2.0, 'vitamins' => 'B6, C', 'minerals' => 'Magnesium, Mangan'],
+            ['name' => 'Cabe Merah', 'calories' => 40.00, 'protein' => 1.87, 'fat' => 0.44, 'carbohydrates' => 9.5, 'fiber' => 1.5, 'vitamins' => 'A, C, E', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Kacang Polong', 'calories' => 81.00, 'protein' => 5.42, 'fat' => 0.4, 'carbohydrates' => 14.45, 'fiber' => 5.1, 'vitamins' => 'C, K, B1', 'minerals' => 'Fosfor, Zat Besi'],
+            ['name' => 'Jamur Champignon', 'calories' => 22.00, 'protein' => 3.09, 'fat' => 0.34, 'carbohydrates' => 3.26, 'fiber' => 1.0, 'vitamins' => 'B2, B3', 'minerals' => 'Fosfor, Kalium'],
+            ['name' => 'Sawi Hijau', 'calories' => 13.00, 'protein' => 1.5, 'fat' => 0.2, 'carbohydrates' => 2.2, 'fiber' => 1.8, 'vitamins' => 'A, C, K', 'minerals' => 'Kalsium, Kalium'],
+            ['name' => 'Labu Siam', 'calories' => 19.00, 'protein' => 1.0, 'fat' => 0.1, 'carbohydrates' => 4.5, 'fiber' => 1.7, 'vitamins' => 'C, B6', 'minerals' => 'Kalium'],
+            ['name' => 'Nasi Putih', 'calories' => 130.00, 'protein' => 2.69, 'fat' => 0.28, 'carbohydrates' => 28.17, 'fiber' => 0.4, 'vitamins' => 'B1, B3', 'minerals' => 'Mangan, Fosfor'],
+            ['name' => 'Mie Telur', 'calories' => 138.00, 'protein' => 5.0, 'fat' => 2.3, 'carbohydrates' => 25.0, 'fiber' => 1.0, 'vitamins' => 'B1, B3', 'minerals' => 'Zat Besi, Fosfor'],
+            ['name' => 'Gula Pasir', 'calories' => 387.00, 'protein' => 0.0, 'fat' => 0.0, 'carbohydrates' => 100.0, 'fiber' => 0.0, 'vitamins' => '', 'minerals' => ''],
+            ['name' => 'Madu', 'calories' => 304.00, 'protein' => 0.3, 'fat' => 0.0, 'carbohydrates' => 82.4, 'fiber' => 0.2, 'vitamins' => 'B2, B6, C', 'minerals' => 'Kalsium, Kalium'],
+            ['name' => 'Cokelat Hitam', 'calories' => 546.00, 'protein' => 4.88, 'fat' => 31.28, 'carbohydrates' => 61.17, 'fiber' => 10.9, 'vitamins' => 'E, K', 'minerals' => 'Magnesium, Zat Besi'],
+            ['name' => 'Teh Hijau', 'calories' => 1.0, 'protein' => 0.0, 'fat' => 0.0, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'C', 'minerals' => 'Fosfor'],
+            ['name' => 'Kopi Hitam', 'calories' => 2.0, 'protein' => 0.3, 'fat' => 0.0, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B2', 'minerals' => 'Magnesium'],
+            ['name' => 'Air Putih', 'calories' => 0.0, 'protein' => 0.0, 'fat' => 0.0, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => '', 'minerals' => ''],
+            ['name' => 'Kacang Mede', 'calories' => 553.00, 'protein' => 18.22, 'fat' => 43.85, 'carbohydrates' => 30.19, 'fiber' => 3.3, 'vitamins' => 'K, B6', 'minerals' => 'Magnesium, Fosfor'],
+            ['name' => 'Kacang Kedelai', 'calories' => 446.00, 'protein' => 36.49, 'fat' => 19.94, 'carbohydrates' => 30.16, 'fiber' => 9.3, 'vitamins' => 'K, B9', 'minerals' => 'Kalsium, Besi'],
+            ['name' => 'Gandum Utuh', 'calories' => 340.00, 'protein' => 13.7, 'fat' => 2.5, 'carbohydrates' => 72.0, 'fiber' => 12.2, 'vitamins' => 'B1, B3, B6', 'minerals' => 'Mangan, Fosfor'],
+            ['name' => 'Quinoa', 'calories' => 368.00, 'protein' => 14.12, 'fat' => 6.07, 'carbohydrates' => 64.16, 'fiber' => 7.0, 'vitamins' => 'B1, B2', 'minerals' => 'Magnesium, Zat Besi'],
+            ['name' => 'Chia Seed', 'calories' => 486.00, 'protein' => 16.54, 'fat' => 30.74, 'carbohydrates' => 42.12, 'fiber' => 34.4, 'vitamins' => 'B1, B3', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Flaxseed', 'calories' => 534.00, 'protein' => 18.29, 'fat' => 42.16, 'carbohydrates' => 28.88, 'fiber' => 27.3, 'vitamins' => 'B1', 'minerals' => 'Mangan, Magensium'],
+            ['name' => 'Kismis', 'calories' => 299.00, 'protein' => 3.07, 'fat' => 0.46, 'carbohydrates' => 79.18, 'fiber' => 3.7, 'vitamins' => 'K', 'minerals' => 'Kalsium, Kalium'],
+            ['name' => 'Kurma', 'calories' => 282.00, 'protein' => 2.45, 'fat' => 0.39, 'carbohydrates' => 75.03, 'fiber' => 6.7, 'vitamins' => 'B6, K', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Alpukat', 'calories' => 160.00, 'protein' => 2.0, 'fat' => 14.66, 'carbohydrates' => 8.53, 'fiber' => 6.7, 'vitamins' => 'K, E, C', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Kelapa Parut', 'calories' => 354.00, 'protein' => 3.33, 'fat' => 33.49, 'carbohydrates' => 15.23, 'fiber' => 9.0, 'vitamins' => 'C, E', 'minerals' => 'Zat Besi, Magnesium'],
+            ['name' => 'Jagung Kuning', 'calories' => 365.00, 'protein' => 9.42, 'fat' => 4.74, 'carbohydrates' => 74.26, 'fiber' => 7.3, 'vitamins' => 'B1, B5', 'minerals' => 'Fosfor, Magnesium'],
+            ['name' => 'Talas', 'calories' => 142.00, 'protein' => 1.5, 'fat' => 0.1, 'carbohydrates' => 34.6, 'fiber' => 4.1, 'vitamins' => 'C, B6', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Sukun', 'calories' => 103.00, 'protein' => 1.1, 'fat' => 0.3, 'carbohydrates' => 27.6, 'fiber' => 4.9, 'vitamins' => 'C, B6', 'minerals' => 'Kalium'],
+            ['name' => 'Bayam Merah', 'calories' => 23.0, 'protein' => 2.2, 'fat' => 0.3, 'carbohydrates' => 3.8, 'fiber' => 2.5, 'vitamins' => 'A, C, K', 'minerals' => 'Zat Besi, Kalsium'],
+            ['name' => 'Lentil', 'calories' => 116.00, 'protein' => 9.02, 'fat' => 0.38, 'carbohydrates' => 20.13, 'fiber' => 7.9, 'vitamins' => 'B1, B6', 'minerals' => 'Fosfor, Zat Besi'],
+            ['name' => 'Kale', 'calories' => 49.00, 'protein' => 4.28, 'fat' => 0.93, 'carbohydrates' => 8.75, 'fiber' => 3.6, 'vitamins' => 'A, C, K', 'minerals' => 'Kalsium, Kalium'],
+            ['name' => 'Seledri', 'calories' => 16.00, 'protein' => 0.69, 'fat' => 0.17, 'carbohydrates' => 3.0, 'fiber' => 1.6, 'vitamins' => 'A, C, K', 'minerals' => 'Kalium, Fosfor'],
+            ['name' => 'Pepaya', 'calories' => 43.00, 'protein' => 0.47, 'fat' => 0.26, 'carbohydrates' => 10.82, 'fiber' => 1.7, 'vitamins' => 'A, C, E', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Nanas', 'calories' => 50.00, 'protein' => 0.54, 'fat' => 0.12, 'carbohydrates' => 13.12, 'fiber' => 1.4, 'vitamins' => 'C, B6', 'minerals' => 'Mangan, Kalium'],
+            ['name' => 'Mangga', 'calories' => 60.00, 'protein' => 0.82, 'fat' => 0.38, 'carbohydrates' => 15.0, 'fiber' => 1.6, 'vitamins' => 'A, C, E', 'minerals' => 'Kalium, Magnesium'],
+            ['name' => 'Kembang Kol', 'calories' => 25.00, 'protein' => 1.92, 'fat' => 0.28, 'carbohydrates' => 4.97, 'fiber' => 2.0, 'vitamins' => 'C, K, B6', 'minerals' => 'Kalsium, Magnesium'],
+            ['name' => 'Bit Merah', 'calories' => 43.00, 'protein' => 1.61, 'fat' => 0.17, 'carbohydrates' => 9.56, 'fiber' => 2.8, 'vitamins' => 'C, B9', 'minerals' => 'Kalium, Zat Besi'],
+            ['name' => 'Kacang Polong Kering', 'calories' => 352.00, 'protein' => 24.6, 'fat' => 1.1, 'carbohydrates' => 63.3, 'fiber' => 25.0, 'vitamins' => 'B1, B9', 'minerals' => 'Zat Besi, Fosfor'],
+            ['name' => 'Jamur Shiitake', 'calories' => 34.00, 'protein' => 2.2, 'fat' => 0.5, 'carbohydrates' => 6.8, 'fiber' => 2.5, 'vitamins' => 'B2, B3', 'minerals' => 'Fosfor, Kalium'],
+            ['name' => 'Kangkung', 'calories' => 19.00, 'protein' => 3.2, 'fat' => 0.2, 'carbohydrates' => 3.1, 'fiber' => 2.0, 'vitamins' => 'A, C, K', 'minerals' => 'Kalsium, Zat Besi'],
+            ['name' => 'Jagung Pipil', 'calories' => 365.00, 'protein' => 9.42, 'fat' => 4.74, 'carbohydrates' => 74.26, 'fiber' => 7.3, 'vitamins' => 'B1, B5', 'minerals' => 'Fosfor, Magnesium'],
+            ['name' => 'Sarden Kaleng', 'calories' => 208.00, 'protein' => 24.62, 'fat' => 10.54, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'D, B12', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Telur Ayam', 'calories' => 155.00, 'protein' => 12.58, 'fat' => 10.6, 'carbohydrates' => 1.12, 'fiber' => 0.0, 'vitamins' => 'A, D, B12', 'minerals' => 'Zat Besi, Fosfor'],
+            ['name' => 'Daging Sapi', 'calories' => 250.00, 'protein' => 26.1, 'fat' => 15.0, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B12, B6', 'minerals' => 'Zat Besi, Seng'],
+            ['name' => 'Ayam Fillet', 'calories' => 165.00, 'protein' => 31.0, 'fat' => 3.6, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B6, B12', 'minerals' => 'Fosfor, Kalium'],
+            ['name' => 'Ikan Salmon', 'calories' => 208.00, 'protein' => 20.42, 'fat' => 13.42, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'D, B12', 'minerals' => 'Selenium, Fosfor'],
+            ['name' => 'Ikan Tuna', 'calories' => 132.00, 'protein' => 28.0, 'fat' => 1.3, 'carbohydrates' => 0.0, 'fiber' => 0.0, 'vitamins' => 'B6, B12', 'minerals' => 'Selenium, Fosfor'],
+            ['name' => 'Udang', 'calories' => 99.00, 'protein' => 24.0, 'fat' => 0.3, 'carbohydrates' => 0.2, 'fiber' => 0.0, 'vitamins' => 'B12, D', 'minerals' => 'Selenium, Zinc'],
+            ['name' => 'Tahu', 'calories' => 76.00, 'protein' => 8.08, 'fat' => 4.78, 'carbohydrates' => 1.87, 'fiber' => 0.3, 'vitamins' => 'B1, B2', 'minerals' => 'Kalsium, Besi'],
+            ['name' => 'Tempe', 'calories' => 193.00, 'protein' => 20.29, 'fat' => 10.8, 'carbohydrates' => 7.57, 'fiber' => 1.4, 'vitamins' => 'B2, B3', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Susu Sapi', 'calories' => 42.00, 'protein' => 3.4, 'fat' => 1.0, 'carbohydrates' => 5.0, 'fiber' => 0.0, 'vitamins' => 'B2, D', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Keju Cheddar', 'calories' => 403.00, 'protein' => 24.9, 'fat' => 33.1, 'carbohydrates' => 1.3, 'fiber' => 0.0, 'vitamins' => 'A, B12', 'minerals' => 'Kalsium, Fosfor'],
+            ['name' => 'Yogurt', 'calories' => 59.00, 'protein' => 10.0, 'fat' => 0.4, 'carbohydrates' => 3.6, 'fiber' => 0.0, 'vitamins' => 'B2, B12', 'minerals' => 'Kalsium, Fosfor'],
+        ];
+
+
+        foreach ($materials as $material) {
+            DB::table('food_materials')->insert([
+                'name' => $material['name'],
+                'calories' => $material['calories'],
+                'protein' => $material['protein'],
+                'fat' => $material['fat'],
+                'carbohydrates' => $material['carbohydrates'],
+                'fiber' => $material['fiber'],
+                'vitamins' => $material['vitamins'],
+                'minerals' => $material['minerals'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+    }
+}

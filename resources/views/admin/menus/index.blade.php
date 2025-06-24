@@ -38,6 +38,7 @@
                             @if($menu->photo)
                                 {{-- Menampilkan foto dari storage --}}
                                 <img src="{{ asset('storage/' . $menu->photo) }}" alt="{{ $menu->title }}" class="rounded-4 img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+
                             @else
                                 <span>No Photo</span>
                             @endif

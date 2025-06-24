@@ -36,12 +36,9 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger rounded-pill">Delete</button>
                             </form>
-                        @elseif ($user->role === 'admin' && $user->id === Auth::id())
-                            <!-- hehe -->
-                             <p>Not Accesible</p>
                         @else
-                            {{-- User adalah admin lain, tidak ada action --}}
-                            <span class="text-muted small">Tidak ada aksi</span>
+                            <!-- hehe -->
+                            <p>Not Accesible</p>
                         @endif
                     </td>
                 </tr>

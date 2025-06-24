@@ -36,9 +36,6 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('admin.articles*') ? 'active' : '' }}" href="{{ route('admin.articles.index') }}">Article Management</a> {{-- Menggunakan route() --}}
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('admin.contact*') ? 'active' : '' }}" href="{{ route('admin.contact.index') }}">Contact Management</a>
-                    </li>
                 </ul>
                 <div class="btn btn-danger rounded-pill">
                     <form method="POST" action="{{ route('logout') }}">

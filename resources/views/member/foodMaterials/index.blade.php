@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
             materialNamePlaceholder.textContent = materialName;
 
             var deleteForm = document.getElementById('deleteForm');
-            deleteForm.action = `/member/food-materials/${materialId}`; 
+            deleteForm.action = `/member/foodMaterials/${materialId}`; 
         });
     }
 });
