@@ -104,11 +104,11 @@
                                     <div class="carousel-inner">
                                         @foreach($featuredArticles->take(5) as $index => $article)
                                             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                                <div class="card shadow-sm border-0 article-preview-card flex-grow-1 mb-4 rounded-4">
+                                                <div class="card shadow-sm border-0 article-preview-card flex-grow-1 mb-4 rounded-4" >
                                                     <img src="{{ $article->photo ? asset('storage/' . $article->photo) : '/images/placeholder-article.jpg' }}"
                                                          class="card-img-top rounded-top-4"
                                                          alt="{{ $article->title }}"
-                                                         style="border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important;">
+                                                         style="border-bottom-left-radius: 0 !important; border-bottom-right-radius: 0 !important; height: 300px;">
                                                     <div class="card-body rounded-4">
                                                         <h5 class="card-title">{{ $article->title }}</h5>
                                                         <p class="card-text">{{ Str::limit($article->description, 120) }}</p>

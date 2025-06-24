@@ -11,30 +11,29 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
     protected static ?string $password;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $genders = ['male', 'female', 'other'];
+        $activityLevels = ['sedentary', 'light', 'moderate', 'active', 'very active'];
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'fullname' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'role' => 'member', // default 'member'
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'age' => $this->faker->numberBetween(18, 65),
+            'gender' => $this->faker->randomElement($genders),
+            'activity_level' => $this->faker->randomElement($activityLevels),
             'remember_token' => Str::random(10),
+            'height' => $this->faker->randomFloat(2, 140, 200), // cm
+            'weight' => $this->faker->randomFloat(2, 45, 120),  // kg
+            'medical_history' => $this->faker->optional()->paragraphs(2, true), // beberapa kalimat random atau null
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [
