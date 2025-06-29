@@ -32,6 +32,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.articles.edit', $article->id) }}" class="btn btn-sm btn-warning rounded-pill">Edit</a>
+                                <a href="{{ route('admin.articles.edit', $article->id) }}" class="btn btn-sm btn-warning rounded-pill">Detail</a>
                                 <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus artikel ini?');">
                                     @csrf
                                     @method('DELETE')

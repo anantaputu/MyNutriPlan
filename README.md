@@ -1,65 +1,81 @@
-<<<<<<< HEAD
 # MyNutriPlan
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+MyNutriPlan adalah aplikasi berbasis web yang dirancang untuk membantu pengguna dalam merencanakan, memantau, dan meningkatkan pola makan sehat sesuai kebutuhan nutrisi harian. Dengan fitur analisis nutrisi yang canggih dan rekomendasi menu yang dipersonalisasi, MyNutriPlan menjadi asisten digital untuk gaya hidup sehat.
 
-## About Laravel
+## Penjelasan Singkat
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi ini memanfaatkan data nutrisi makanan dan algoritma rekomendasi untuk memberikan saran menu harian yang sesuai dengan profil pengguna, seperti usia, jenis kelamin, berat badan, tinggi badan, dan tujuan kesehatan (misal: menurunkan berat badan, menjaga berat badan, atau menambah massa otot). Pengguna dapat mencatat asupan makanan, memantau kemajuan, serta mendapatkan tips dan edukasi seputar gizi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Rekomendasi Menu Harian**  
+    Menyediakan saran menu harian yang disesuaikan dengan kebutuhan kalori, makronutrien (karbohidrat, protein, lemak), dan mikronutrien (vitamin, mineral) pengguna.
 
-## Learning Laravel
+- **Pencatatan Asupan Makanan**  
+    Memungkinkan pengguna mencatat makanan yang dikonsumsi setiap hari, baik secara manual maupun melalui pencarian database makanan.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Analisis Nutrisi Otomatis**  
+    Menghitung total kalori dan kandungan nutrisi dari makanan yang dicatat, serta membandingkannya dengan kebutuhan harian.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Saran Perbaikan Pola Makan**  
+    Memberikan insight dan rekomendasi untuk memperbaiki pola makan berdasarkan data asupan harian.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Profil Pengguna & Tujuan Kesehatan**  
+    Pengguna dapat mengatur profil dan tujuan kesehatan untuk mendapatkan rekomendasi yang lebih akurat.
 
-## Laravel Sponsors
+- **Riwayat & Statistik**  
+    Menampilkan grafik dan statistik perkembangan asupan nutrisi dan pencapaian target.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Edukasi Gizi**  
+    Menyediakan artikel, tips, dan informasi seputar nutrisi dan pola makan sehat.
 
-### Premium Partners
+## Instalasi
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Pastikan Anda telah menginstal [Node.js](https://nodejs.org/) dan [npm](https://www.npmjs.com/) di komputer Anda.
 
-## Contributing
+1. **Clone repositori ini:**
+        ```bash
+        git clone https://github.com/username/MyNutriPlan.git
+        ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Masuk ke direktori proyek:**
+        ```bash
+        cd MyNutriPlan
+        ```
 
-## Code of Conduct
+3. **Instal dependensi aplikasi:**
+        ```bash
+        npm install
+        ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Konfigurasi variabel lingkungan (opsional):**  
+     Jika aplikasi membutuhkan konfigurasi khusus (misal: API key), buat file `.env` di root proyek dan tambahkan variabel yang diperlukan.
 
-## Security Vulnerabilities
+5. **Jalankan aplikasi secara lokal:**
+        ```bash
+        npm start
+        ```
+        Aplikasi akan berjalan di `http://localhost:3000` secara default.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Build untuk produksi (opsional):**
+        ```bash
+        npm run build
+        ```
+        Hasil build akan tersedia di folder `build/`.
 
-## License
+## Kontribusi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> 2dea1b2 (Commit Pertama Ananta)
+Kontribusi sangat terbuka!  
+Jika Anda ingin menambahkan fitur, memperbaiki bug, atau meningkatkan dokumentasi:
+
+1. Fork repositori ini.
+2. Buat branch baru untuk perubahan Anda.
+3. Lakukan perubahan dan commit.
+4. Ajukan _pull request_ ke branch utama.
+
+Silakan buat _issue_ jika menemukan bug atau memiliki saran fitur.
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah MIT License.  
+Silakan lihat file [LICENSE](./LICENSE) untuk informasi lebih lanjut.
