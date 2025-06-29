@@ -6,6 +6,11 @@
     <title>@yield('title', 'MyNutriPlan')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="{{ asset('css/global.css') }}" rel="stylesheet">
+
+    {{-- Ini adalah baris penting untuk Laravel 12 dengan Vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js']) 
+
     @stack('styles')
 </head>
 <body>
@@ -34,7 +39,7 @@
                 {{-- Dropdown Pengguna --}}
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->fullname }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
